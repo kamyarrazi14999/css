@@ -170,16 +170,10 @@ body {
   top: 0;
   left: 30px;
 }
-
 @keyframes heart {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) scale (1.2);
-  }
-}
 
+
+}
 
 
 
