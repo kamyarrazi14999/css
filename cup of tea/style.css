@@ -139,3 +139,33 @@ body {
     transform: translateY(-300px)scaleX(10);
   }
 }
+
+.heart {
+  position: absolute;
+  
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 60px;
+  height: 60px;
+  background-color: #ec4509;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #e44b13;
+}
+
+.heart::before {
+  top: -30px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 30px;
+}
