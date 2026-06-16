@@ -172,178 +172,188 @@ body {
   }
 }
 
-/* Heart Animation */
 .heart {
   position: absolute;
-  top: 120px;
+  /* شروع حرکت از داخل چای */
+  top: 150px; 
   left: 50%;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: var(--heart-color);
-  opacity: 0;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  animation: heart-shot var(--heart-shot-duration) ease-in-out infinite;
+  /* پنهان کردن اولیه برای شروع انیمیشن */
+  opacity: 0; 
+  /* چرخاندن مربع برای ساختن شکل قلب */
+  transform: translateX(-50%) rotate(-45deg); 
+  /* اعمال انیمیشن اصلی برای بیرون آمدن و محو شدن */
+  animation: emerge-and-float 4s ease-out infinite;
+  animation-delay: 1s; /* تاخیر برای هماهنگی با بخار */
 }
 
 .heart::before,
 .heart::after {
   content: '';
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: var(--heart-before-after-color);
-  animation: heart var(--heart-beat-duration) linear infinite;
+  /* انیمیشن ضربان قلب که به طور مداوم اجرا می‌شود */
+  animation: heart-beat 1.5s linear infinite;
 }
 
 .heart::before {
-  top: -30px;
+  /* قرار دادن دایره بالایی */
+  top: -25px;
   left: 0;
 }
 
 .heart::after {
+  /* قرار دادن دایره سمت راست */
   top: 0;
-  left: 30px;
+  left: 25px;
 }
 
-@keyframes heart {
+/* کی‌فریم برای انیمیشن ضربان (تپیدن) قلب */
+@keyframes heart-beat {
   0%, 100% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.3);
+    transform: scale(1.2);
   }
 }
 
-@keyframes heart-shot {
-  0%, 55% {
+/* کی‌فریم برای انیمیشن بیرون آمدن و شناور شدن قلب */
+@keyframes emerge-and-float {
+  0% {
+    /* در ابتدا قلب کاملا پنهان و کوچک است */
     opacity: 0;
-    transform: translate(-50%, -50%) rotate(-45deg) scale(0.5);
+    transform: translateX(-50%) rotate(-45deg) scale(0.2);
   }
-  60% {
+  20% {
+    /* قلب با جهش از چای بیرون می‌آید و کاملا نمایان می‌شود */
     opacity: 1;
+    transform: translateX(-50%) translateY(-80px) rotate(-45deg) scale(1);
   }
-  70% {
-    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+  80% {
+    /* قلب به آرامی به سمت بالا حرکت کرده و شروع به محو شدن می‌کند */
+    opacity: 0.5;
+    transform: translateX(-50%) translateY(-200px) rotate(-45deg) scale(1.1);
   }
   100% {
-    transform: translate(-50%, -50%) rotate(-45deg) scale(0.5);
+    /* در انتها کاملا محو و ناپدید می‌شود */
+    opacity: 0;
+    transform: translateX(-50%) translateY(-250px) rotate(-45deg) scale(0.8);
   }
 }
+
 
 /* Bow and Arrow Animation */
 .bow-container {
   position: absolute;
-  top: 50%;
-  left: 240px;
-  transform: translateY(-50%) rotate(15deg);
-  z-index: 10;
+  top: 120px; /* پایین‌تر، داخل چای */
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg); /* چرخاندن برای شلیک به بالا */
+  width: 150px;
+  height: 150px;
+  z-index: 15; /* بالاتر از چای و قلب اصلی */
 }
 
 .bow {
   position: absolute;
-  width: 40px;
-  height: 200px;
-  border: 10px solid var(--bow-color);
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 150px;
+  border: 5px solid var(--bow-color);
   border-right: none;
-  border-radius: 150px 0 0 150px;
+  border-radius: 100px 0 0 100px;
 }
 
 .bow::before {
   content: '';
   position: absolute;
-  top: -10px;
-  left: 30px;
+  top: -5px;
+  left: 15px;
   width: 1px;
-  height: 220px;
-  background: var(--vapour-color);
-  animation: bow-string-pull var(--bow-arrow-duration) ease-in-out infinite;
-}
-
-.arrow {
-  position: absolute;
-  top: 97px;
-  left: 30px;
-  width: 150px;
-  height: 6px;
+  height: 160px;
   background: var(--arrow-color);
-  transform-origin: right center;
-  animation: arrow-pull var(--bow-arrow-duration) ease-in-out infinite;
+  animation: bow-string-pull 4s ease-in-out infinite;
+  animation-delay: 1s;
 }
 
-.arrow::before {
+/* استایل‌دهی به قلب پرتابی */
+.heart-arrow {
+  position: absolute;
+  top: 65px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--heart-color);
+  transform: rotate(-45deg);
+  opacity: 0;
+  animation: heart-shot 4s ease-out infinite;
+  animation-delay: 1s;
+}
+
+.heart-arrow::before,
+.heart-arrow::after {
   content: '';
   position: absolute;
-  left: -15px;
-  top: -7px;
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 15px solid var(--arrow-head-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--heart-color);
 }
 
-.arrow::after {
-  content: '';
-  position: absolute;
-  right: 12px;
-  top: -9px;
-  width: 30px;
-  height: 30px;
-  background:
-    linear-gradient(135deg, var(--arrow-feather-color) 50%, transparent 50%),
-    linear-gradient(-135deg, var(--arrow-feather-color) 50%, transparent 50%);
-  background-size: 50% 100%;
-  background-repeat: no-repeat;
-  background-position: right, left;
+.heart-arrow::before {
+  top: -10px;
+  left: 0;
 }
 
-@keyframes arrow-pull {
-  0%, 100% {
-    transform: translateX(0) scaleX(1);
-  }
-  40% {
-    transform: translateX(-80px) scaleX(1.2);
-  }
-  55% {
-    transform: translateX(-200px) scaleX(1);
-    opacity: 1;
-  }
-  56% {
-    opacity: 0;
-  }
-  57% {
-    transform: translateX(-80px) scaleX(1.2);
-    opacity: 0;
-  }
-  58% {
-    opacity: 1;
-  }
+.heart-arrow::after {
+  top: 0;
+  left: 10px;
 }
 
+/* کی‌فریم برای کشیده شدن زه کمان */
 @keyframes bow-string-pull {
-  0%, 100% {
+  0%, 100%, 55% {
     transform: translateX(0);
   }
-  40% {
-    transform: translateX(-80px);
-  }
-  55%, 57% {
-    transform: translateX(0);
+  30% {
+    transform: translateX(-20px); /* کشیده شدن به عقب */
   }
 }
 
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .vapour span,
-  .heart,
-  .heart::before,
-  .heart::after,
-  .bow::before,
-  .arrow {
-    animation: none;
+/* کی‌فریم برای پرتاب شدن قلب */
+@keyframes heart-shot {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(0) rotate(-45deg) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(0) rotate(-45deg) scale(0.5);
+  }
+  30% {
+    opacity: 1;
+    transform: translateX(-20px) rotate(-45deg) scale(0.7); /* عقب کشیدن با زه */
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(180px) rotate(-45deg) scale(1.2); /* پرتاب شدن به بالا */
+  }
+  80% {
+    opacity: 0.5;
+    transform: translateX(220px) rotate(-45deg) scale(0.8);
+  }
+  95% {
+    opacity: 0;
+    transform: translateX(220px) rotate(-45deg) scale(0.8);
   }
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
