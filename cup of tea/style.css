@@ -1,3 +1,4 @@
+
 :root {
   /* Colors */
   --bg-color: #607d8b;
@@ -5,8 +6,8 @@
   --cup-color-end: #d9d9d9;
   --cup-border-color: #dcdcdc;
   --plate-color-end: #e7e7e7;
-  --tea-color-start: #c57e65;
-  --tea-color-end: #e28462;
+  --tea-color-start: #725449a6;
+  --tea-color-end: #865a4a;
   --vapour-color: #fff;
   --heart-color: #ec4509;
   --heart-before-after-color: #e44b13;
@@ -348,10 +349,7 @@ body {
 @media (max-width: 768px) {
   .container {
     transform: scale(0.7);
-Workspace indexing: Done
-Current file
-
-Wor
-
+  }
+}
 
 
