@@ -12,6 +12,9 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+   flex-wrap: wrap;
+   flex-direction: row;
+  gap: 60px;
 }
 .card {
   position: relative;
@@ -21,6 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
 }
 .card .imgBox {
   position: relative;
