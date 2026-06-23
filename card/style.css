@@ -13,8 +13,8 @@ body {
   align-items: center;
   min-height: 100vh;
    flex-wrap: wrap;
-   flex-direction: row;
   gap: 60px;
+  perspective: 1000px;
 }
 .card {
   position: relative;
@@ -24,7 +24,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+    transition: 0.5s;
+  transform-style: preserve-3d;
+}
+.card:hover {
+    transform: rotateY(15deg) translateY(-20px);
+  box-shadow: -10px 20px 40px rgba(0,0,0,0.2);
 }
 .card .imgBox {
   position: relative;
@@ -32,9 +37,48 @@ body {
   height: 240px;
   background: #f00;
   border-radius: 15px;
+  background-size: cover;
+  transform-style: preserve-3d;
+  transition: 0.5s;
+}
+.card:nth-child(1) .imgBox {
   background: url(./assets/img/OuesVF.jpg);
   background-size: cover;
 }
+.card:nth-child(2) .imgBox {
+  background: url(./assets/img/beautiful-nature-wallpaper-spring-flowers-mountain-sunset-free-image.webp); /* Your second image */
+  background-size: cover;
+}
+.card:nth-child(3) .imgBox {
+  background: url(./assets/img/waterfall-in-a-dark-forest-free-photo.webp); /* Your third image */
+  background-size: cover;
+}
+
+.card .imgBox::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left:50%;
+  width:20px;
+  height: 20px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow:-10px 10px 0px #fff;
+
+  }
+.card .imgBox::after {
+  content: "";
+  position: absolute;
+  bottom: 70px;
+  left:0;
+  width:20px;
+  height: 20px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow:-10px 10px 0px #fff;
+
+}
+
 .card .content {
   position: relative;
   width: 100%;
@@ -42,16 +86,35 @@ body {
   background: #232949;
   border-radius: 15px;
   border-top-left-radius: 0px;
+  padding: 0 35px;
+  transform-style: preserve-3d;
+  transition: 0.5s;
 }
+.card :hover .content {
+  transform: translateZ(40px);
+}
+.card .content ul {
+ color: #fff;
+ transition: 0.5s;
+}
+.card:hover .content ul {
+  transform: translateZ(20px);
+}
+
 .card .content .price {
   position: absolute;
   top: -80px;
+  left:0;
   height: 80px;
   width: 50%;
   background: #232949;
   border-top: 10px solid #fff;
   border-right: 10px solid #fff;
   border-top-right-radius: 25px;
+  transition: 0.5s;
+}
+.card:hover .content .price {
+  transform: translateZ(80px);
 }
 .card .content .price:before {
   content: "";
@@ -73,3 +136,14 @@ body {
   border-radius: 50%;
   box-shadow: -10px 10px 0px #232949;
 }
+.card .content .price a {
+  position: relative;
+  background: #fff;
+  text-decoration: none;
+  padding: 10px 10px;
+  margin: 15px 15px;
+  color:#333;
+  border-radius: 7px;
+  font-weight: 500;
+  display: block;
+} 
