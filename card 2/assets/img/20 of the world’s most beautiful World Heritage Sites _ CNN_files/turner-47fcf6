@@ -1,0 +1,3 @@
+if (typeof gotSegmentData != 'undefined') {
+  gotSegmentData( { "data": ["132200","pa_eye101","ojf1jg","yij4mh","pa_eye83","dem3006","81ywyo","127700","4ea65v","dem2021","pa_p1001","uuqwbn","m8lsga","diro9j","7lkp8o","300003","pa_eye112","pa_eye243","6ks868","6nnwx9","pa_eye111","jx3gvg","3m6014","pa_eye257","pa_eye159","sr3lz5","odcovn","gmc9us","0wftp0","pa_eye162","pa_eye97","pa_eye110","210001","8ywbiv","5jm4ip","lzfao2","nrqc8r","3tzrc2","goghls","40y2qd","tgjzk4","x67pfl","h3adaq","pczk0c","xhzx6x","pa_eye161","pa_eye160","f8ncps","t1xced","pa_p1025","rlk5o8","pnv48t","16rmye","xzox48","uljdw0","gw8bpi","pa_eye157","pa_eye108","pa_eye203","xj73xy","rdxffz","pedty2","gitu90","132204"]} );
+};

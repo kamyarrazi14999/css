@@ -1,0 +1,87 @@
+const cnnMapping = {
+  4019: {
+    "dt-mw-ads-redesign-2026-2/c": "4976",
+    "dt-mw-ads-redesign-2026-2/t1": "4685",
+    "mw-ads-redesign-2026-2/c": "4976",
+    "mw-ads-redesign-2026-2/t1": "4685",
+    "dt-ads-redesign-2026-2/c": "4976",
+    "dt-ads-redesign-2026-2/t1": "4685"
+  },
+  462: {
+    "dt-mw-ads-redesign-2026-2/c": "4977",
+    "dt-mw-ads-redesign-2026-2/t1": "4717",
+    "mw-ads-redesign-2026-2/c": "4977",
+    "mw-ads-redesign-2026-2/t1": "4717",
+    "dt-ads-redesign-2026-2/c": "4977",
+    "dt-ads-redesign-2026-2/t1": "4717"
+  }
+};
+
+/**
+ * Example of CNN window object
+ * window["CNN"] = { adsRedesign: true, fastAb: { activeExperiments: ['dt-mw-ads-redesign-2026-2/t2','dt-mw-ads-redesign-2026-2/t1'] } }
+ */
+
+function getCNNAdsRedesignContextfeedId(contextfeedId) {
+  let newContextfeedId = contextfeedId;
+  const activeExperiments = window?.CNN?.fastAB?.activeExperiments;
+  if (!activeExperiments) {
+    return newContextfeedId;
+  }
+  const experiments = cnnMapping[contextfeedId];
+  if(!experiments) {
+    return newContextfeedId;
+  }
+  for (const [experiment, replacementContextfeedId] of Object.entries(
+    experiments
+  )) {
+    if (activeExperiments.includes(experiment)) {
+      newContextfeedId = replacementContextfeedId;
+      break;
+    }
+  }
+  return newContextfeedId;
+}
+
+function dianomiContextReady(fn) {
+  if (document.readyState !== "loading") {
+    fn();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      fn();
+    });
+  }
+}
+
+function init() {
+  const contextfeedIds = document.querySelectorAll(".dianomi_context");
+  contextfeedIds.forEach((contextfeedId) => {
+    const contextfeedIdValue = contextfeedId.getAttribute(
+      "data-dianomi-context-id"
+    );
+    if (!contextfeedIdValue) {
+      return;
+    }
+    const newContextfeedId = getCNNAdsRedesignContextfeedId(contextfeedIdValue);
+    contextfeedId.setAttribute("data-dianomi-context-id", newContextfeedId);
+    addDianomiContextfeedScript();
+  });
+}
+
+function addDianomiContextfeedScript() {
+  const script = document.createElement("script");
+  script.src = "https://www.dianomi.com/js/contextfeed.js";
+  document.head.appendChild(script);
+}
+
+dianomiContextReady(init);
+
+function isTruthy(value) {
+  return (
+    value === "1" ||
+    value === 1 ||
+    value === true ||
+    value === "true" ||
+    (typeof value === "string" && value.toLowerCase() === "true")
+  );
+}

@@ -1,0 +1,17 @@
+(function(){
+  window['optimizely'] = window['optimizely'] || [];
+  window['optimizely'].push(['activateGeoDelayedExperiments', {
+    'location':{
+      'city': "NEWYORKCITY",
+      'continent': "NA",
+      'country': "US",
+      'region': "NY",
+      'dma': "501"
+    },
+    'ip':"37.19.199.222"
+  }]);
+})
+
+()
+
+;
