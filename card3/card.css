@@ -1,16 +1,87 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #232949;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url(./1593735.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  perspective: 1000px;
+}
+.box {
+  position: relative;
+  border-radius: 20px;
+  transform-style: preserve-3d;
+}
+.box .card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  width: 300px;
+  min-height: 400px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  border-left: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 20px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+  transform-style: preserve-3d;
+}
+.elements {
+  position: absolute;
+  top: 50px;
+  left: -30px;
+  width: 100px;
+  height: 100px;
+  background: rgba(225, 255, 255, 0.1);
+  transform: translateZ(80px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  border-left: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+}
+.elements.big::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(./OIP.svg) no-repeat;
+  background-size: 60px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: 0.5s;
+}
+.box:hover .elements.big::before {
+  opacity: 1;
+}
+.elements.imgBox {
+  left: inherit;
+  right: 60px;
+  width: 120px;
+  height: 120px;
+  top: 0;
+  padding: 50px;
+  transform: translateZ(120px);
+}
+.elements.imgBox img {
+  position: absolute;
+  width:calc(100% -  20px);
+  border-radius: 10px; 
+   border: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  border-left: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 8px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5); 
+  opacity: 0;
+  transition: 0.5s;
 }
