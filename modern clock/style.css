@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgb(196, 21, 21);
+}
+
+.bezel circle {
+  fill: none;
+  stroke: #bdcbdb;
+  stroke-width: 18;
+  stroke-dasharray: 2011;
+  animation: draw 3.4s ease both;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 2011;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.dial {
+  position: absolute;
+  inset: 7.5%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #19344a, #071421 );
+  animation: reveal 1s 2.4s both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.markers{
+  position:absolute;
+  rotate: calc(var(--i)* 6deg);
+  animation:settle .48s both;
+  animation-delay: calc(4.4s + var(--i)*48ms);
+  
+}
+
+@keyframes settle {
+  from{
+    opacity: 0;
+    translate:0 -40px;
+  }
+  to{
+    opacity: 1;
+    translate:0 0;
+  }
+}
+.hand{
+  position: absolute;
+  transform-origin: bottom center;
+background: #28e2b0;
+  animation: assemble .6s both;
+  animation-delay:var(--delay);
+}
